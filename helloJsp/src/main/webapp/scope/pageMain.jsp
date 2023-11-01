@@ -40,7 +40,27 @@
 </ul>
 
 <h2>include된 파일에서 page 영역 읽어오기</h2>
+ 	<p>include지시어로 감싼 JSP파일은 포함관계를 가지므로 같은 페이지 </p>
+ 	<p>페이지 영역이나 변수등이 공유 됩니다.</p>
+
 <%@ include file="pageInclude.jsp" %>
+
+<h2>페이지 이동 후 페이지 영역 읽어오기</h2>
+<!-- 페이지 요청 -->
+
+<!-- 링크또는 form을 이용해서 페이지를 다시 요청 하게 되면 페이지 영역이 초기화 됩니다. -->
+<a href = "pageLoction.jsp">pageLocation 바로가기</a>
+
+<!-- remove -->
+<%
+	pageContext.removeAttribute("page");
+%>
+<h2>영역에 저장된 속성을 삭제</h2>
+<!-- 
+	removeAttribute 메서드는 값이 없는경우 오류를 발생하지 않는다 
+	getAttribute 메서드는 값이 없는경우 null을 반환 한다 
+-->
+page : <%= pageContext.getAttribute("page")%>
 </body>
 </html>
 

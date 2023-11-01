@@ -13,6 +13,10 @@
 	오류 메세지를 출력 할수 있도록 main페이지로 파라메터를 전달 
 -->
 <%
+
+	// post방식에서 한글깨짐 처리
+	// request.setCharacterEncoding("UTF-8");
+
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	

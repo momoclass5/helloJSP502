@@ -9,4 +9,38 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  <!-- 컨텍스트 초기화 매개변수 -->
+  <context-param>
+  	<param-name>INIT_PARAM</param-name>
+  	<param-value>web.xml에 저장한 초기화 변수</param-value>
+  </context-param>
+  
+  <!-- 에러 페이지 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/Exception.jsp</location>
+  </error-page>
+  
+  <!--
+  <servlet>
+  	<servlet-name>서블릿 이름</servlet-name>
+  	<servlet-class>서블릿 클래스 이름</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>서블릿 이름</servlet-name>
+  	<url-pattern>/test.do</url-pattern>
+  </servlet-mapping>
+  -->
 </web-app>
+
+
+
+
+
+
+
+
+
+

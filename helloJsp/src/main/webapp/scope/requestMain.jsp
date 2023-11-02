@@ -9,12 +9,13 @@
 </head>
 <body>
 <%
+
 	request.setAttribute("request_str", "request영역에 문자열 저장");
 	request.setAttribute("reqest_person", new Person("momo",30));
 	
 	String request_str = "값 없음";
 	Person request_person = new Person();
-	
+		
 	if(request.getAttribute("request_str") != null){
 		request_str = request.getAttribute("request_str").toString();
 	}

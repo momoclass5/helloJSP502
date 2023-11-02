@@ -17,11 +17,12 @@
 	request.setAttribute("request_str", "request_str");
 	request.setAttribute("request_person", new Person("momo", 30));
 	
+	// session 영영에 값을 저장
+	session.setAttribute("session_str", "session_str");
+
 	// queryString을 통해 파라메터를 전달
 	response.sendRedirect("requestRedirect.jsp?isRedirect=1");
 	
-	// session 영영에 값을 저장
-	session.setAttribute("session_str", "session_str");
 	
 %>
 

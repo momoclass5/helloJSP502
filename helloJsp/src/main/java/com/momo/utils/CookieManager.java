@@ -45,16 +45,22 @@ public class CookieManager {
 	public static String readCookie(
 			HttpServletRequest request
 			, String name) {
+		
 		String value = "";
 		
 		// 요청객체로 부터 쿠키배열을 획득
 		Cookie[] cookies = request.getCookies();
+		System.out.println("cookies : " + cookies);
 		
-		// 쿠키 배열을 돌면서 쿠키이름이 일치하는 객체가 있는지 확인
-		for(Cookie cookie:cookies) {
-			if(cookie.getName().equals(name)) {
-				value = cookie.getValue();
-				break;
+		// 브라우저를 통해 처음 접근 했을때
+		// 쿠키가 하나도 저장되어 있지 않은경우 getCookies 메서드를 호출 하면 null을 반환
+		if(cookies != null){
+			// 쿠키 배열을 돌면서 쿠키이름이 일치하는 객체가 있는지 확인
+			for(Cookie cookie:cookies) {
+				if(cookie.getName().equals(name)) {
+					value = cookie.getValue();
+					break;
+				}
 			}
 		}
 		return value;

@@ -52,13 +52,20 @@ window.onload = function(){
 			// 1. href : queryString을 이용해서 파라메터를 전달
 			// 2. form submit : form안에 요소들을 가지고 이동
 			popupForm.submit();
-			
-			
-			
 		} 
 		console.log('체크박스가 선택 되지 않았습니다.')
-		// display 속성을 none로 설정 하면 화면에서 숨김처리
+		// display 속성을 none로 설정 하면 화면에서 숨김
 		popup.style.display = 'none';
+		// display 속성을 block으로 설정 하면 화면에서 출력
+		
+		/*
+			querySelector : 요소를 하나 선택
+			querySelectorAll
+				- 여러개의 요소를 선택할때 사용
+				- nodeList를 반환 하며 리스트와 같이 방번호([0])를 이용해 접근이 가능 하다
+								
+		*/
+		document.querySelector("#popup").style.display='block';
 	}
 	
 	
@@ -84,7 +91,7 @@ window.onload = function(){
 	// 쿠키에 저장된 popupClose의 값이 Y가 아니면 화면에 팝업을 생성
 	if(!"Y".equals(popupClose)){
 	%>
-    <div id="popup" >
+    <div id="popup" style="display:none">
         <h2 align="center">공지사항 팝업입니다.</h2>
         <div align="right">
 	        

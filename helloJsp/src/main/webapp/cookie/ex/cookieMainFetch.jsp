@@ -49,19 +49,15 @@
 			// 닫기버튼이 클릭 되었으면 체크박스가 체크되었는지 확인
 			if(document.querySelector("input[id=inactiveToday]").checked){
 				// 서버에 페이지를 요청
-				//popupForm.submit();
+				// popupForm.submit();
 				
-				fetch('cookieAction.jsp')
-	        	.then((data) => data.json)
-	        	.then((json) => {
-	        		console.log("data.json", json);
-	        		console.log("PopupCookie.jsp 호출");
-	        	});
+				fetch('cookieAction.jsp');
+				console.log('fetch를 이용하여 서버에 cookieAction.jsp페이지를 요청');
 				
-			} else {
-				// 팝업창 닫기
-				document.querySelector("#popup").style.display='none';
-			}
+			} 
+			// 팝업창 닫기
+			document.querySelector("#popup").style.display='none';
+			
 		}			
 		
 	}

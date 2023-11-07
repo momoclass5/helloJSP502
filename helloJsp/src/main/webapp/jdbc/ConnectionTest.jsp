@@ -1,4 +1,5 @@
-<%@page import="com.momo.EmpDao"%>
+
+<%@page import="com.momo.dao.EmpDao"%>
 <%@page import="com.momo.common.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -41,7 +42,16 @@
 						);
 	dbcon2.close();
 %>
-
+<h2>JDBC 테스트 3</h2>
+<%
+	DBConnection dbcon3 = new DBConnection(application);
+	dbcon3.close();
+%>
+<h2>empDao.getList()</h2>
+<%
+	EmpDao empDao = new EmpDao(application);
+	empDao.getList();
+%>
 
 
 

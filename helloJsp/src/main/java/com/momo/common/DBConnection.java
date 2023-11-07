@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.ServletContext;
+
 public class DBConnection {
 	public Connection con;
 	public Statement stmt;
@@ -58,6 +60,24 @@ public class DBConnection {
 		}
 	}
 	
+	public DBConnection(ServletContext application) {
+		String driver = application.getInitParameter("driver");
+		String url = application.getInitParameter("url");
+		String id = application.getInitParameter("id");
+		String pw = application.getInitParameter("pw");
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, id, pw);
+			System.out.println("application 내장객체를 활용한 Connection 생성");
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패 - 라이브러리를 확인해주세요");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Connection 객체 생성 실패");
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 연결해제(자원반납)
 	 */

@@ -39,6 +39,25 @@ public class DBConnection {
 		}
 	}
 	
+	public DBConnection(String driver, String url, String id, String pw) {
+		try {
+			// 1. 드라이버 로딩
+			Class.forName(driver);
+			
+			// 2. DB Connection 객체 생성
+			con = DriverManager.getConnection(url, id, pw);
+			
+			System.out.println("DB 연결 성공(인수 생성자 1)");
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패 - 라이브러리를 확인해주세요");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Connection 생성 실패");
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 연결해제(자원반납)
 	 */
@@ -48,6 +67,8 @@ public class DBConnection {
 			if(pstmt != null) pstmt.close();
 			if(stmt != null) stmt.close();
 			if(con != null) con.close();
+			
+			System.out.println("자원 반납 성공");
 		} catch (Exception e) {
 			System.out.println("자원반납중 예외가 발생 하였습니다.");
 			e.printStackTrace();

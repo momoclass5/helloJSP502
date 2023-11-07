@@ -16,6 +16,24 @@
   	<param-value>web.xml에 저장한 초기화 변수</param-value>
   </context-param>
   
+  <!-- 데이터베이스 접속 정보 -->
+  <context-param>
+  	<param-name>driver</param-name>
+  	<param-value>oracle.jdbc.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>url</param-name>
+  	<param-value>jdbc:oracle:thin:@localhost:1521:orcl</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>id</param-name>
+  	<param-value>test</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>pw</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+  
   <!-- 에러 페이지 -->
   <error-page>
   	<error-code>404</error-code>

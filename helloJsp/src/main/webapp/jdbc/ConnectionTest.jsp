@@ -1,4 +1,6 @@
 
+<%@page import="com.momo.dto.EmpDto"%>
+<%@page import="java.util.List"%>
 <%@page import="com.momo.dao.EmpDao"%>
 <%@page import="com.momo.common.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -50,9 +52,29 @@
 <h2>empDao.getList()</h2>
 <%
 	EmpDao empDao = new EmpDao(application);
-	empDao.getList();
+	List<EmpDto> list = empDao.getList();
+	empDao.close();
+	//out.print(list);
 %>
 
+<table border="1">
+	<tr>
+		<td>사원ID</td>
+		<td>사원명</td>
+		<td>주민번호</td>
+	</tr>
+	<%
+	for(EmpDto dto : list){
+	%>
+	<tr>
+		<td><%=dto.getEmp_id() %></td>
+		<td><%=dto.getEmp_name() %></td>
+		<td><%=dto.getEmp_no() %></td>
+	</tr>
+	
+	<%} %>
+	
+</table>
 
 
 

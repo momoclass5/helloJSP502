@@ -32,8 +32,12 @@ public class DBConnectionEmp {
 			// 2. 커넥션 생성
 			con = DriverManager.getConnection(url, id, pw);
 
+			int empId = 210;
+			
 			// 3. 쿼리문장 준비
-			String sql = "select emp_id, emp_name, emp_no from employee";
+			String sql = "select emp_id, emp_name, emp_no "
+					+ "from employee "
+					+ "where emp_id > " + empId;
 
 			// 4. 쿼리 문장 실행
 			stmt = con.createStatement();

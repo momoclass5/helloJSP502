@@ -10,6 +10,7 @@ import java.sql.Statement;
 import javax.servlet.ServletContext;
 
 public class DBConnection {
+	// con이 null인 경우 오류가 발생 할수 있음
 	public Connection con;
 	public Statement stmt;
 	public PreparedStatement pstmt;

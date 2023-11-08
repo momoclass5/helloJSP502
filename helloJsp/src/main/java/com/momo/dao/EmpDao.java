@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import com.momo.common.DBConnPool;
 import com.momo.common.DBConnection;
 import com.momo.dto.EmpDto;
 
@@ -16,11 +17,16 @@ import com.momo.dto.EmpDto;
  * Dao -> mapper
  * 
  */
-public class EmpDao extends DBConnection{
+public class EmpDao extends DBConnPool{
 
-	public EmpDao(ServletContext application) {
-		super(application);
-	}
+	/**
+	 * 생성자를 이용하여 Connection 객체를 생성후
+	 * 멤버변수인 con에 저장 합니다.
+	 * @param application
+	 */
+//	public EmpDao(ServletContext application) {
+//		super(application);
+//	}
 	
 	/**
 	 * 데이터베이스로부터 사원의 목록을 조회 하여 반환합니다.
@@ -46,6 +52,10 @@ public class EmpDao extends DBConnection{
 				
 				list.add(dto);
 			}
+			
+			// 자원반납
+			close();
+			
 		} catch (SQLException e) {
 			System.out.println("SQLException 예외사항 발생");
 			e.printStackTrace();

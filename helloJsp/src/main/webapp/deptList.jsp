@@ -12,6 +12,7 @@
 
 <h2>부서목록</h2>
 <%
+	// jsp를 단독으로 실행 할 경우, null이 출력 될수 있다
 	List<DeptDto> list = (List<DeptDto>)request.getAttribute("list");
 	out.print(list);
 

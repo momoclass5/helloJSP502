@@ -9,15 +9,18 @@
 </head>
 <body>
 <h2>로그인 성공</h2>
-<%=session.getAttribute("userId") %>님 환영합니다.
+<%=session.getAttribute("userId") %>님 환영합니다. 
+<a href="logoutProcess.jsp">로그아웃</a>
 <hr>
 <%
-MemberDto dto = (MemberDto)session.getAttribute("memberDto");
+// 오류발생 하지 않도록 null 처리
+if(session.getAttribute("memberDto") != null){
+	MemberDto dto = (MemberDto)session.getAttribute("memberDto");	
 %>
 아이디 : <%=dto.getId() %><br>
 이 름 : <%=dto.getName() %><br>
 등록일 : <%=dto.getRegidate() %><br>
-
+<%} %>
 
 
 </body>

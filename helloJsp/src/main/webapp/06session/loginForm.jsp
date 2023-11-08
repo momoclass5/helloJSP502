@@ -8,6 +8,13 @@
 </head>
 <body>
 <h2>로그인</h2>
+<%
+	String isError = request.getParameter("isError");
+	//out.print(isError);
+	if(isError != null && isError.equals("1")){
+		out.print("아이디 비밀번호를 확인해주세요");
+	}
+%>
 	<form action="loginProcess.jsp" method="post" name="loginFrm"
         onsubmit="return validateForm(this);">
         아이디 : <input type="text" name="user_id" required="required"/><br />

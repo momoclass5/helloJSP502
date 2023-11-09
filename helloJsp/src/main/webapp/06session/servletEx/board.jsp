@@ -10,18 +10,34 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script type="text/javascript">
+window.onload = function(){
+	let logoutBtn = document.querySelector("#logoutBtn");
+	logoutBtn.onclick = function(){
+		loginForm.action = "/logout";
+		loginForm.submit();
+	}
+	
+	loginBtn.addEventListener('click', function(){
+		loginForm.action = "loginForm.jsp";
+		loginForm.submit();
+	});
+}	
+</script>
 <!-- 로그인/로그아웃 링크 보여주기 
 	- 세션에 userId가 null 이 아니라면 로그아웃 링크, 아니면 로그인 링크를 화면에 출력 
 -->
+<form name="loginForm">
 <%
 	Object userId = session.getAttribute("userId");
 	if(userId != null && !"".equals(userId)){
 %>		
 	<%=session.getAttribute("userId") %>님 환영합니다.
-	<button>로그아웃</button>
+	<button id="logoutBtn">로그아웃</button>
 <%	} else { %>
-	<button>로그인</button>
+	<button id="loginBtn">로그인</button>
 <%	} %>
+</form>
 <h2>게시판</h2>
 
 <table border="1">

@@ -1,3 +1,6 @@
+
+<%@page import="java.util.List"%>
+<%@page import="com.momo.dto.BoardDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,5 +23,38 @@
 	<button>로그인</button>
 <%	} %>
 <h2>게시판</h2>
+
+<table border="1">
+	<tr>
+		<th>일련번호</th>
+		<th>제목</th>
+		<th>내용</th>
+		<th>작성자</th>
+		<th>작성일</th>
+		<th>조회수</th>
+	</tr>
+	<%	
+	if(request.getAttribute("list") != null){
+		List<BoardDto> list = (List<BoardDto>)request.getAttribute("list"); 
+		for(BoardDto dto :list){
+	%>
+			
+			<tr>
+				<td><%= dto.getNum()%></td>
+				<td><%= dto.getTitle()%></td>
+				<td><%= dto.getContent()%></td>
+				<td><%= dto.getId()%></td>
+				<td><%= dto.getPostdate()%></td>
+				<td><%= dto.getVisitcount()%></td>
+
+			</tr>
+	<%	}
+	} 
+	%>
+</table>
+
+
+
+
 </body>
 </html>

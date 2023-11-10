@@ -23,8 +23,14 @@ public class BoardDetailController extends HttpServlet {
 		
 		// 1건의 게시글을 조회
 		BoardDao dao = new BoardDao();
+
+		// 조회수 증가
+		dao.visitcountUp(num);
+
+		// 상세보기 조회
 		BoardDto dto = dao.getOne(num);
 		request.setAttribute("dto", dto);
+		
 		dao.close();
 		
 		// 페이지 전환

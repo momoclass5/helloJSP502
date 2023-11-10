@@ -29,8 +29,10 @@ window.onload = function(){
 	}
 	
 	if(loginBtn != null){
+		
 		loginBtn.addEventListener('click', function(){			
 			// 로그인페이지로 이동
+			// 같은 경로에 있는 파일을 호출 했기 때문에 오류가 발생 하지 않았어요!
 			loginForm.action="/06session/servletEx/loginForm.jsp";
 			loginForm.submit();
 		});

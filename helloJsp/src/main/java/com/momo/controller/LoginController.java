@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.momo.dao.BoardDao;
 import com.momo.dao.MemberDao;
 import com.momo.dto.MemberDto;
+import com.momo.dto.Person;
 
 @WebServlet("/06session/servletEx/loginProcess")
 public class LoginController extends HttpServlet {
@@ -57,6 +58,7 @@ public class LoginController extends HttpServlet {
 			request.setAttribute("list", boardDao.getList());
 			dao.close();
 
+			
 			// sendRedirect를 이용할 경우, request영역이 공유가 되지 않기 때문에 
 			// list값을 화면으로 전달할수 없어
 			//response.sendRedirect("board.jsp");

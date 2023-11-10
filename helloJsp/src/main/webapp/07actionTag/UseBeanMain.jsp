@@ -11,8 +11,7 @@
 <!-- html 태그주석 -->
 <%-- 자바 주석 --%>
 
-<%--
-
+<%--  
 액션태그의 주석은 %주석을 이용합니다!!
  
 자바빈 이란?
@@ -30,23 +29,23 @@
 	<jsp:useBean> : 자바빈 생성
 	<jsp:setProperty> 	: 자바빈 속성을 저장 합니다
 	<jsp:getProperty> 	: 자바빈 속성을 추출 합니다 
- --%>
+--%>
 <!-- 
 		id 		: 자바빈즈 이름
 	    class 	: 패키지명을 포함한 클래스명 
 	    scope 	: 저장될 영역	
  -->
 <!-- 객체생성 -->
+<%
+	BoardDto bDto = new BoardDto(); 
+	bDto.setContent("내용");
+	bDto.setTitle("제목");
+	request.setAttribute("bDto", bDto);
+%>
 <jsp:useBean id="boardDto" 
 				class="com.momo.dto.BoardDto"
 				scope="request"></jsp:useBean>
 				
-<!-- setProperty메서드를 이용해서 속성값을 지정 -->
-    <!-- 
-    	name 		: 자바빈즈 이름
-    	property 	: 필드명
-    	value 		: 필드값
-     -->
 <jsp:setProperty property="content" name="boardDto" value="내용"/>
 <jsp:setProperty property="title" name="boardDto" value="제목"/>
 

@@ -11,6 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<%=request.getAttribute("list") %>
 <script type="text/javascript">
 // 화면에서 동적인 처리
 window.onload = function(){
@@ -51,6 +53,8 @@ window.onload = function(){
 				
 	* 버튼 생성했더라도 form안에 버튼이 하나밖에 없다면 해당 버튼은 서브밋 버튼이 된다!!!!!
   -->
+  
+  
 <form method="get" name="loginForm">
 <%
 	// getAttribute의 반환 타입은 Object이므로 형변환이 필요합니다.

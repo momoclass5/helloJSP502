@@ -12,6 +12,10 @@ import com.momo.dto.BoardDto;
 // main메서드 사용이 불가능, 서버가 실행되어야 사용이 가능
 // 만약, main 메서드를 이용해서 테스트를 하고 싶다면 상속받는 객체를 DBConnection으로 변경해야 합니다. 
 public class BoardDao extends DBConnPool{
+
+//	public int insertBoard(BoardDto dto) {
+//		
+//	}
 	
 	public int deleteBoard(String num) {
 		int res = 0;

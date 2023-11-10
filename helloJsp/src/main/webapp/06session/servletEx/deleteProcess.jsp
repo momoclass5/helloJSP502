@@ -16,7 +16,9 @@
 		if(dao.deleteBoard(num) != 1){
 			JSFunction.alertBack("존재하지 않는 게시글 입니다.", out);
 		}
-			
+		// 정상적으로 삭제처리가 된경우 
+		// 메세지 처리후 리스트 페이지로 이동 합니다.
+		JSFunction.alertLocation("삭제 되었습니다.", "/boardList", out);
 	} else {
 		/*
 		out.print("<script type='text/javascript'>");

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+num : <%=request.getParameter("num")%><br>
 <script type="text/javascript">
 window.onload = function(){
 	// 버튼을 클릭 하면 리스트 페이지로 이동
@@ -15,12 +16,12 @@ window.onload = function(){
 		location.href='/boardList';
 	}
 	// editBtn.addEventListener('click', function(){
-	editBtn.addEventListener('click', ()=>{
+	deleteBtn.addEventListener('click', ()=>{
 		// jsp를 단독으로 실행할 경우, 경로문제가 발생하지 않아요
 		// 같은 경로에 들어 있기때문에
 		// 하지만 서블릿을 통해 들어오는 경우, 경로문제가 발생 할수 있어요
 		// 그래서 루트경로부터 풀 경로를 적어주는것이 오류가 발생하지 않도록 하는 방법입니다.
-		location.href=
+	location.href=
 	'/06session/servletEx/deleteProcess.jsp?num=<%=request.getParameter("num")%>';
 	});
 	

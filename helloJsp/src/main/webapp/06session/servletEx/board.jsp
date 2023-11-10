@@ -31,7 +31,7 @@ window.onload = function(){
 	if(loginBtn != null){
 		loginBtn.addEventListener('click', function(){			
 			// 로그인페이지로 이동
-			loginForm.action="loginForm.jsp";
+			loginForm.action="/06session/servletEx/loginForm.jsp";
 			loginForm.submit();
 		});
 	}
@@ -94,7 +94,7 @@ window.onload = function(){
 			
 			<tr>
 				<td><%= dto.getNum()%></td>
-				<td><%= dto.getTitle()%></td>
+				<td><a href="/boardRead?num=<%=dto.getNum()%>"><%= dto.getTitle()%></a></td>
 				<td><%= dto.getContent()%></td>
 				<td><%= dto.getId()%></td>
 				<td><%= dto.getPostdate()%></td>

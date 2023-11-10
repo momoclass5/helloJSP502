@@ -12,7 +12,43 @@ import com.momo.dto.BoardDto;
 // main메서드 사용이 불가능, 서버가 실행되어야 사용이 가능
 // 만약, main 메서드를 이용해서 테스트를 하고 싶다면 상속받는 객체를 DBConnection으로 변경해야 합니다. 
 public class BoardDao extends DBConnPool{
+	/**
+	 * 한건의 게시글을 조회후 반납합니다.
+	 * @return BoardDto
+	 */
+	public BoardDto getOne(String num) {
+		BoardDto dto = null;
+		String sql = "select * \r\n"
+					+ "from board\r\n"
+					+ "where num = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new BoardDto();
+				dto.setContent(rs.getString("content"));
+				dto.setId(rs.getString("id"));
+				dto.setNum(rs.getString("num"));
+				dto.setPostdate(rs.getString("postdate"));
+				dto.setTitle(rs.getString("title"));
+				dto.setVisitcount(rs.getString("visitcount"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dto;
+	}
 	
+	/**
+	 * 게시글 목록을 반환 합니다.
+	 * @return List<BoardDto>
+	 */
 	public List<BoardDto> getList() {
 		List<BoardDto> list = new ArrayList<>();
 		try {

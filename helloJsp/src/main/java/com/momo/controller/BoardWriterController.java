@@ -23,11 +23,16 @@ public class BoardWriterController extends HttpServlet {
 		// 로그인 체크
 		HttpSession session = request.getSession();
 		if(session.getAttribute("userId") == null) {
+			
+			// 한글깨짐 처리
+			response.setContentType("text/html; charset=UTF-8");
+			
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
 			out.print("alert('로그인후 게시글을 작성 할 수 있습니다.')");
 			out.print("</script>");
 			return;
+			
 		}
 		
 		// 파라메터 수집

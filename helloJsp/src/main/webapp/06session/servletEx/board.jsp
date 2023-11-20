@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.momo.dto.BoardDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,25 +58,15 @@ window.onload = function(){
   
   
 <form method="get" name="loginForm">
-<%
-	// getAttribute의 반환 타입은 Object이므로 형변환이 필요합니다.
-	// nullpointException을 방지하기 위해서 null체크를 진행
-	// 로그인 버튼이 나오려면 - 
-	// 로그아웃 버튼 나오려면 - 
-	if(session.getAttribute("userId") != null
-		&& !"".equals(session.getAttribute("userId").toString())){
-		// 로그인한 사용자 - 로그아웃 버튼 출력 -> 세션을 만료 시키고 로그인페이지로 이동
-%>
-	<%=session.getAttribute("userId") %>님 환영합니다. 
-	<button id="logoutBtn">로그아웃</button>
-<%
-	} else {
-		// 로그인하지 않은 사용자 - 로그인버튼 출력 -> 로그인 페이지로 이동
-%>
+
+<c:if test="${empty userId}">
 	<button id="loginBtn">로그인</button>
-<%
-	}
-%>
+</c:if>
+<c:if test="${not empty userId}">
+	${userId }님 환영합니다. 
+	<button id="logoutBtn">로그아웃</button>
+</c:if>
+
 </form>
 <h2>게시글 목록</h2>
 <table border="1">
@@ -87,31 +78,24 @@ window.onload = function(){
 		<th>작성일</th>
 		<th>조회수</th>
 	</tr>
-	리스트 : ${list }
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:forEach items="${list}" var="board">
-	${board.num }
-	${board.title }
-</c:forEach>	
-	<%	
-	// list : request영역에 저장되어 있어요
-	if(request.getAttribute("list") != null){
-		List<BoardDto> list = (List<BoardDto>)request.getAttribute("list"); 
-		for(BoardDto dto :list){
-	%>
-			
-			<tr>
-				<td><%= dto.getNum()%></td>
-				<td><a href="/boardRead?num=<%=dto.getNum()%>"><%= dto.getTitle()%></a></td>
-				<td><%= dto.getContent()%></td>
-				<td><%= dto.getId()%></td>
-				<td><%= dto.getPostdate()%></td>
-				<td><%= dto.getVisitcount()%></td>
-
-			</tr>
-	<%	}
-	} 
-	%>
+<!-- 만약 리스트의 사이즈가 0이라면 조회된 데이터가 없습니다를 출력 -->
+<!-- 만약 리스트의 사이즈가 0이 아니라면 목록을 출력 -->
+	<c:if test="${empty list}" var="result">
+		<tr><td colspan="6">조회된 데이터가 존재하지 않습니다.</td></tr>
+	</c:if>
+	
+	<c:forEach items="${list }" var="dto">
+		<tr>
+			<td>${dto.num }</td>
+			<td><a href="/boardRead?num=${dto.num }">${dto.title }</a></td>
+			<td>${dto.content }</td>
+			<td>${dto.id }</td>
+			<td>${dto.postdate }</td>
+			<td>${dto.visitcount }</td>
+		
+		</tr>
+	</c:forEach>
+	
 </table>
 
 <!-- pageNavi include -->

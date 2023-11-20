@@ -1,6 +1,8 @@
 package com.momo.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.momo.dao.BoardDao;
+import com.momo.dto.BoardDto;
 import com.momo.dto.Criteria;
 import com.momo.dto.PageDto;
 
@@ -23,7 +26,8 @@ public class BoardListController extends HttpServlet {
 		
 		// 리스트 조회후 리쿼스트 영역에 저장
 		BoardDao dao = new BoardDao();
-		request.setAttribute("list", dao.getList(cri));
+		List<BoardDto> list = dao.getList(cri);
+		request.setAttribute("list", list);
 		
 		// 페이지 블럭을 생성하기 위해 필요한 정보를 저장
 		int totalCnt = dao.getTotalCnt();

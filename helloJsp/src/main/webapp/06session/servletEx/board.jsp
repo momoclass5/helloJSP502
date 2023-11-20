@@ -87,7 +87,14 @@ window.onload = function(){
 		<th>작성일</th>
 		<th>조회수</th>
 	</tr>
+	리스트 : ${list }
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:forEach items="${list}" var="board">
+	${board.num }
+	${board.title }
+</c:forEach>	
 	<%	
+	// list : request영역에 저장되어 있어요
 	if(request.getAttribute("list") != null){
 		List<BoardDto> list = (List<BoardDto>)request.getAttribute("list"); 
 		for(BoardDto dto :list){

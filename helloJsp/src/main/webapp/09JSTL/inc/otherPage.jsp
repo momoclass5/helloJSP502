@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2>${param.title } </h2>
 <!-- 외부페이지 연결 하기 -->
 <c:import url="https://goldenrabbit.co.kr/"></c:import>
 </body>

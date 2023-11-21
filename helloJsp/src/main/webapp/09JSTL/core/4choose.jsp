@@ -9,7 +9,15 @@
 
 <script type="text/javascript">
 	window.onload = function(){
+		
 		submitBtn.addEventListener('click', function(){
+			// 콘솔에 로그를 찍을때 ,로 연결 하세요
+			// 'test' + event
+			// 스크립트는 이벤트에 의해서 동작 되는 경우가 많다!
+			console.log('event', event);
+			console.log('event' + event);
+			console.log('===========================');
+			// 기본이벤트를 제거하는 함수
 			event.preventDefault();
 			console.log('기본이벤트를 제거 하였습니다.');
 			
@@ -22,7 +30,19 @@
 		});
 	}	
 	
-	// 유효성검사 validation check
+	/*
+		유효성검사 validation check
+	 	form 요소를 매개변수로 받아서 
+	 	form이 가지고 있는 요소의 값을 체크
+	 	
+	 	함수 정의
+		type 매개변수명
+		function 함수이름(매개변수){
+		
+		}
+	
+		form : 변수이름
+	*/
 	function validateForm(form){
 		// 유효성검사 결과 testForm을 submit
 		// 체크로직을 모두 통과 했다면 서버에 요청, 체크로직을 통과하지 못했다면 메세지 처리
@@ -72,6 +92,14 @@
 	국어 : <input type="text" name="kor" value="80"><br>
 	영어 : <input type="text" name="eng" value="70"><br>
 	수학 : <input type="text" name="math" value="90"><br>
+	
+	<!-- 
+		폼에 버튼이 하나만 있다면 이 버튼은 서브밋 버튼이 됩니다. 
+		서브밋버튼은 폼은 전송하는 기본이벤트가 정의되어 있습니다.
+		
+		유효성검사(validation체크)를 진행 하기 위해서는 
+		기본이벤트를 제거 하는 작업을 해야 합니다!!!!
+	-->	
 	<button id="submitBtn">전송</button>
 </form>
 <!-- 동일한 페이지가 다시 요청되어 form태그 안에 요소를 출력 -->

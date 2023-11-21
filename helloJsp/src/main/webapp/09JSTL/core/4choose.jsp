@@ -14,7 +14,7 @@
 			console.log('기본이벤트를 제거 하였습니다.');
 			
 			// 유효성검사
-			let res = validateForm();
+			let res = validateForm(testForm);
 			if(res){
 				// 폼 전송
 				testForm.submit();
@@ -23,22 +23,22 @@
 	}	
 	
 	// 유효성검사 validation check
-	function validateForm(){
+	function validateForm(form){
 		// 유효성검사 결과 testForm을 submit
 		// 체크로직을 모두 통과 했다면 서버에 요청, 체크로직을 통과하지 못했다면 메세지 처리
-		if(testForm.kor.value == ''){
+		if(form.kor.value == ''){
 			alert('국어점수를 입력해주세요');
-			testForm.kor.focus();
+			form.kor.focus();
 			return false;
 		}
-		if(testForm.eng.value == ''){
+		if(form.eng.value == ''){
 			alert('영어점수를 입력해주세요');
-			testForm.eng.focus();
+			form.eng.focus();
 			return false;
 		}
-		if(testForm.math.value == ''){
+		if(form.math.value == ''){
 			alert('수학점수를 입력해주세요');
-			testForm.math.focus();
+			form.math.focus();
 			return false;
 		}
 		return true;
@@ -108,11 +108,18 @@
 </c:if>
 
 
-<form>
+<form name="testForm1">
 	국어 : <input type="text" name="kor" value=""><br>
 	영어 : <input type="text" name="eng" value="70"><br>
 	수학 : <input type="text" name="math" value="90"><br>
-	<button onclick="return validateForm(this);">전송</button>
+	<button onclick="return validateForm(testForm1);">전송</button>
+</form>
+
+<form name="testForm2" onsubmit="return validateForm(testForm2);">
+	국어 : <input type="text" name="kor" value=""><br>
+	영어 : <input type="text" name="eng" value="70"><br>
+	수학 : <input type="text" name="math" value="90"><br>
+	<button>전송</button>
 </form>
 
 

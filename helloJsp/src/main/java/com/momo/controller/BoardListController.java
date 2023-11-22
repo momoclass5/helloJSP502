@@ -23,8 +23,8 @@ public class BoardListController extends HttpServlet {
 		// 리스트를 조회 하기 위한 파라메터 수집
 		Criteria cri = new Criteria(request.getParameter("pageNo")
 									, request.getParameter("amount")
-									, request.getParameter("searchWord")
-									, request.getParameter("searchField"));
+									, request.getParameter("searchField")
+									, request.getParameter("searchWord"));
 		
 		System.out.println(cri);
 		// 리스트 조회후 리쿼스트 영역에 저장

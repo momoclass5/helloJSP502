@@ -37,7 +37,22 @@ window.onload = function(){
 			loginForm.submit();
 		});
 	}
-}	
+	
+	// select 요소의 옵션을 선택 하는 방법
+	
+}
+
+// 함수는 onload 함수 외부에 작성 합니다!!!
+/**
+ * 입력받은 페이지 번호로 이동 합니다.
+ */
+function goPage(pageNo){
+	// 파라메터로 넘어온 페이지 번호를 searchForm에 pageNo에 입력
+	searchForm.pageNo.value = pageNo;
+	searchForm.submit();
+}
+
+
 </script>
 <!-- 로그인 여부를 체크
 	로그인을 했을때 = 세션에 userId가 저장되어 있으면
@@ -70,28 +85,40 @@ window.onload = function(){
 </form>
 
 <h2>게시글 목록</h2>
-
-<!-- 검색폼 -->
-<form name="searchForm">
-<table>
+<table width="90%" align="center">
 	<tr>
 		<td>
-			<input type="text" name="searchWord" value="">
-			<select name="searchField">
-				<!-- 선택된 요소의 value값이 서버로 넘어 갑니다. -->
-				<option value="title">제목</option>
-				<option value="id">작성자</option>
-				<option value="content">내용</option>
-			</select>
-			<button>검색</button>
-		</td>
-	</tr>
-</table>
+		
+<!-- 검색폼 -->
+pageDto : ${pageDto }
+<br>cri : ${pageDto.cri }
+<br>pageNo : ${pageDto.cri.pageNo }
+<br>searchField : ${pageDto.cri.searchField }
+<br>searchWord : ${pageDto.cri.searchWord }
+
+<form name="searchForm">
+pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
+<div class="input-group">
+  <select class="form-select" name="searchField" id="inputGroupSelect04" aria-label="Example select with button addon">
+    <!-- 선택된 요소의 value값이 서버로 넘어 갑니다. -->
+	<option value="title" 
+			${pageDto.cri.searchField eq 'title' ? 'selected' : ''}
+			>제목</option>
+	<option value="id" 
+			${pageDto.cri.searchField eq 'id' ? 'selected' : ''}
+			>작성자</option>
+	<option value="content"
+			${pageDto.cri.searchField eq 'content' ? 'selected' : ''}
+			>내용</option>
+  </select>
+  <input type="text" name="searchWord" value="${pageDto.cri.searchWord }" class="form-control" aria-label="Text input with dropdown button">
+  <button class="btn btn-outline-secondary" type="submit">검색</button>
+</div>
 
 </form>
+<br>
 
-
-<table border="1">
+<table border="1" class="table"> 
 	<tr>
 		<th>일련번호</th>
 		<th>제목</th>
@@ -122,6 +149,13 @@ window.onload = function(){
 
 <!-- pageNavi include -->
 <%@include file="PageNavi.jsp" %>
+
+
+
+		</td>
+	</tr>
+</table>
+
 
 </body>
 </html>

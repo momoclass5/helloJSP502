@@ -100,6 +100,16 @@ public class BoardDao extends DBConnPool{
 	public List<BoardDto> getList(Criteria cri) {
 		List<BoardDto> list = new ArrayList<>();
 		try {
+			String where="";
+			// 검색어와 검색필드에 값이 들어 있다면 조건문장을 생성 합니다.
+			if(!"".equals(cri.getSearchField())
+					&& !"".equals(cri.getSearchWord())) {
+				where = "where " + cri.getSearchField() 
+								+ " like '%" + cri.getSearchWord() + "%'";
+			}
+			
+			System.out.println("where : " + where);
+			
 			pstmt = con.prepareStatement("select *\r\n"
 										+ "from (\r\n"
 										+ "        select rownum rnum, b.* \r\n"
@@ -108,6 +118,9 @@ public class BoardDao extends DBConnPool{
 										+ "                select * \r\n"
 										+ "                from board\r\n"
 										+ "                -- 최신순으로 정렬\r\n"
+										
+										+ where
+										
 										+ "                order by num desc\r\n"
 										
 										+ "              )b\r\n"
@@ -118,6 +131,8 @@ public class BoardDao extends DBConnPool{
 			pstmt.setInt(2, cri.getEndNum());
 			
 			rs = pstmt.executeQuery();
+			
+			System.out.println("pstmt" + pstmt);
 			
 			while(rs.next()) {
 				BoardDto dto = new BoardDto();

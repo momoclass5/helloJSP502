@@ -59,16 +59,38 @@ window.onload = function(){
   
 <form method="get" name="loginForm">
 
-<c:if test="${empty userId}">
-	<button id="loginBtn">로그인</button>
-</c:if>
-<c:if test="${not empty userId}">
-	${userId }님 환영합니다. 
-	<button id="logoutBtn">로그아웃</button>
-</c:if>
+	<c:if test="${empty userId}">
+		<button id="loginBtn">로그인</button>
+	</c:if>
+	<c:if test="${not empty userId}">
+		${userId }님 환영합니다. 
+		<button id="logoutBtn">로그아웃</button>
+	</c:if>
 
 </form>
+
 <h2>게시글 목록</h2>
+
+<!-- 검색폼 -->
+<form name="searchForm">
+<table>
+	<tr>
+		<td>
+			<input type="text" name="searchWord" value="">
+			<select name="searchField">
+				<!-- 선택된 요소의 value값이 서버로 넘어 갑니다. -->
+				<option value="title">제목</option>
+				<option value="id">작성자</option>
+				<option value="content">내용</option>
+			</select>
+			<button>검색</button>
+		</td>
+	</tr>
+</table>
+
+</form>
+
+
 <table border="1">
 	<tr>
 		<th>일련번호</th>

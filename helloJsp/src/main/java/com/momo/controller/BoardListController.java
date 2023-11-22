@@ -22,8 +22,11 @@ public class BoardListController extends HttpServlet {
 		
 		// 리스트를 조회 하기 위한 파라메터 수집
 		Criteria cri = new Criteria(request.getParameter("pageNo")
-									, request.getParameter("amount"));
+									, request.getParameter("amount")
+									, request.getParameter("searchWord")
+									, request.getParameter("searchField"));
 		
+		System.out.println(cri);
 		// 리스트 조회후 리쿼스트 영역에 저장
 		BoardDao dao = new BoardDao();
 		List<BoardDto> list = dao.getList(cri);

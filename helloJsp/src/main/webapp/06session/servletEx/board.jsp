@@ -39,6 +39,23 @@ window.onload = function(){
 	}
 	
 	// select 요소의 옵션을 선택 하는 방법
+	var searchField = '${pageDto.cri.searchField }';
+	console.log("searchField : ", searchField);
+	
+	var options = searchForm.searchField.options;
+	
+	// select 요소의 옵션의 selected 속성을 제거
+	for(let i = 0; i < options.length; i++){
+		options[i].removeAttribute("selected");
+	}
+	
+	// select 요소의 옵션의 selected 속성을 부여
+	for(var i = 0; i< searchForm.searchField.options.length; i++){
+		console.log(searchForm.searchField.options[i].value);
+		if(searchForm.searchField.options[i].value == searchField){
+			searchForm.searchField.options[i].setAttribute("selected", "selected");
+		}
+	}
 	
 }
 
@@ -72,30 +89,20 @@ function goPage(pageNo){
   -->
   
   
-<form method="get" name="loginForm">
-
-	<c:if test="${empty userId}">
-		<button id="loginBtn">로그인</button>
-	</c:if>
-	<c:if test="${not empty userId}">
-		${userId }님 환영합니다. 
-		<button id="logoutBtn">로그아웃</button>
-	</c:if>
-
-</form>
+<%@ include file="header.jsp" %>
 
 <h2>게시글 목록</h2>
 <table width="90%" align="center">
 	<tr>
 		<td>
 		
-<!-- 검색폼 -->
+<!-- 검색폼
 pageDto : ${pageDto }
 <br>cri : ${pageDto.cri }
 <br>pageNo : ${pageDto.cri.pageNo }
 <br>searchField : ${pageDto.cri.searchField }
 <br>searchWord : ${pageDto.cri.searchWord }
-
+ -->
 <form name="searchForm">
 pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
 <div class="input-group">
@@ -119,6 +126,7 @@ pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
 <br>
 
 <table border="1" class="table"> 
+	<thead>
 	<tr>
 		<th>일련번호</th>
 		<th>제목</th>
@@ -127,6 +135,9 @@ pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
 		<th>작성일</th>
 		<th>조회수</th>
 	</tr>
+	</thead>
+	
+	<tbody>
 <!-- 만약 리스트의 사이즈가 0이라면 조회된 데이터가 없습니다를 출력 -->
 <!-- 만약 리스트의 사이즈가 0이 아니라면 목록을 출력 -->
 	<c:if test="${empty list}" var="result">
@@ -144,7 +155,7 @@ pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
 		
 		</tr>
 	</c:forEach>
-	
+	</tbody>
 </table>
 
 <!-- pageNavi include -->

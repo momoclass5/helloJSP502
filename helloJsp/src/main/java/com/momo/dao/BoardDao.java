@@ -159,9 +159,20 @@ public class BoardDao extends DBConnPool{
 	 * - 집계함수를 이용하여 게시글의 총건수를 구해봅시다
 	 * @return 게시글의 총 건수
 	 */
-	public int getTotalCnt() {
+	public int getTotalCnt(Criteria cri) {
 		int res = 0;
-		String sql = "select count(*) from board";
+		
+		String where="";
+		// 검색어와 검색필드에 값이 들어 있다면 조건문장을 생성 합니다.
+		if(!"".equals(cri.getSearchField())
+				&& !"".equals(cri.getSearchWord())) {
+			where = "where " + cri.getSearchField() 
+							+ " like '%" + cri.getSearchWord() + "%'";
+		}
+		
+		
+		String sql = "select count(*) from board " + where;
+		System.out.println("sql : " + sql);
 		
 		try {
 			pstmt = con.prepareStatement(sql);

@@ -34,7 +34,9 @@
     <%for(int i=pageDto.getStartNo(); i<=pageDto.getEndNo(); i++){%>
 	    <li class="page-item">
 	    	<a class="page-link <%= pageDto.getCri().getPageNo() == i ? "active" : ""%>" 
-	    		href="/boardList?pageNo=<%=i %>">
+	    		
+	    		onclick="goPage(<%=i %>)"
+	    		>
 	    		<%=i %></a>
 	    </li>
     <%} %>

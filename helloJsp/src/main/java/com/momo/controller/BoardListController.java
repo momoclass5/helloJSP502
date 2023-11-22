@@ -33,7 +33,8 @@ public class BoardListController extends HttpServlet {
 		request.setAttribute("list", list);
 		
 		// 페이지 블럭을 생성하기 위해 필요한 정보를 저장
-		int totalCnt = dao.getTotalCnt();
+		// 조회조건을 세팅하지 않으면 조회되는 게시글의 건수와 페이지블럭이 다르게 표시 될 수 있다
+		int totalCnt = dao.getTotalCnt(cri);
 		PageDto pageDto = new PageDto(totalCnt, cri);
 		request.setAttribute("pageDto", pageDto);
 		

@@ -8,13 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-num : ${param.num }<br>
+<form action="/boardList" name="searchForm">
+num : <input type="text" name="num" value="${param.num }">
+pageNo : <input type="text" name="pageNo" value="${param.pageNo }">
+searchWord : <input type="text" name="searchWord" value="${param.searchWord }">
+searchField : <input type="text" name="searchField" value="${param.searchField }">
+</form>
 
 <script type="text/javascript">
 window.onload = function(){
 	// 버튼을 클릭 하면 리스트 페이지로 이동
 	listBtn.onclick = function(){
-		location.href='/boardList';
+		//location.href='/boardList';
+		searchForm.submit();
 	}
 	// editBtn.addEventListener('click', function(){
 	deleteBtn.addEventListener('click', ()=>{

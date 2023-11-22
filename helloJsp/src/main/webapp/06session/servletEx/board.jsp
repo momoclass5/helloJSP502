@@ -65,11 +65,38 @@ window.onload = function(){
  */
 function goPage(pageNo){
 	// 파라메터로 넘어온 페이지 번호를 searchForm에 pageNo에 입력
+	searchForm.action = '/boardList'
 	searchForm.pageNo.value = pageNo;
+	searchForm.submit();
+}
+/**
+ * 상세 페이지로 이동하기
+ */
+function goDetail(num){
+	// 파라메터로 넘어온 페이지 번호를 searchForm에 pageNo에 입력
+	/*
+		/boardRead?num=${dto.num }
+	*/
+	searchForm.action = '/boardRead';
+	searchForm.num.value= num;
 	searchForm.submit();
 }
 
 
+/**
+ * 폼을 전송(요청) 합니다.
+ */
+function formSubmit(){
+	//1. 폼을 선택 - 폼의 이름을 불러줍니다.
+	//2. 폼의 요소를 선택 - 폼이름.요소의이름
+	searchForm.pageNo.value = '페이지 번호';
+	
+	//3. 폼 전송하기 	- form의 action속성에 정의된 url을 요청 합니다.
+	// 				- 폼안에 요소들을 파라메터로 전달
+	searchForm.submit();
+	
+	
+}
 </script>
 <!-- 로그인 여부를 체크
 	로그인을 했을때 = 세션에 userId가 저장되어 있으면
@@ -91,11 +118,11 @@ function goPage(pageNo){
   
 <%@ include file="header.jsp" %>
 
-<h2>게시글 목록</h2>
 <table width="90%" align="center">
 	<tr>
 		<td>
 		
+<h2>게시글 목록</h2>
 <!-- 검색폼
 pageDto : ${pageDto }
 <br>cri : ${pageDto.cri }
@@ -105,6 +132,7 @@ pageDto : ${pageDto }
  -->
 <form name="searchForm">
 pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
+num : <input type="text" name="num" value="">
 <div class="input-group">
   <select class="form-select" name="searchField" id="inputGroupSelect04" aria-label="Example select with button addon">
     <!-- 선택된 요소의 value값이 서버로 넘어 갑니다. -->
@@ -147,7 +175,7 @@ pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
 	<c:forEach items="${list }" var="dto">
 		<tr>
 			<td>${dto.num }</td>
-			<td><a href="/boardRead?num=${dto.num }">${dto.title }</a></td>
+			<td><a onclick="goDetail(${dto.num })">${dto.title }</a></td>
 			<td>${dto.content }</td>
 			<td>${dto.id }</td>
 			<td>${dto.postdate }</td>

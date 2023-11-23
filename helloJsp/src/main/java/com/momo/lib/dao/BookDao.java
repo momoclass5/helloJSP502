@@ -23,8 +23,8 @@ public class BookDao extends DBConnPool{
 				String no = rs.getString("no");
 				String title = rs.getString("title");
 				String author = rs.getString("author");
-				
-				BookDto dto = new BookDto(no, title, author);
+				String rentYn = rs.getString("rentYn");
+				BookDto dto = new BookDto(no, title, author, rentYn);
 				list.add(dto);
 			}
 		} catch (SQLException e) {

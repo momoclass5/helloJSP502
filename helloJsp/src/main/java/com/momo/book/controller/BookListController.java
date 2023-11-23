@@ -1,28 +1,35 @@
-package com.momo.lib.controller;
+package com.momo.book.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.momo.lib.dao.BookDao;
+import com.momo.book.dao.BookDao;
+import com.momo.lib.dto.BookDto;
 
-@WebServlet("/bookList")
+@WebServlet("/book/list")
 public class BookListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	/**
-	 * 도서목록을 조회 후 request영역에 저장 합니다.
-	 * bookList.jsp로 forward 합니다.
+	 * 도서목록을 조회 합니다.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 도서목록 조회후 request 영역에 담아 줍니다. -> 화면에서 출력 하기 위해서!!
 		BookDao dao = new BookDao();
-		request.setAttribute("list", dao.getList());
+		List<BookDto> list = dao.getList();
+		request.setAttribute("list", list);
+		
 		dao.close();
-		request.getRequestDispatcher("/lib/bookList.jsp").forward(request, response);
+		
+		// JSP 화면으로 전환(forward방식)
+		request.getRequestDispatcher("/book/list.jsp")
+				.forward(request, response);
 	}
-
 
 }

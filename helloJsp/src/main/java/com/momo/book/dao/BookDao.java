@@ -30,11 +30,15 @@ public class BookDao extends DBConnPool{
 		try {
 			// pageingQuery를 이용시 페이지 처리를 위한 파라메터 세팅을 해주어야 합니다!!!
 			sql = pageingQuery(sql);
-			
+			// 쿼리 출력
 			System.out.println("sql\n" + sql);
+			
 			pstmt = con.prepareStatement(sql);
+			// 페이지 파라메터 세팅
 			pstmt.setInt(1, cri.getStartNum());
 			pstmt.setInt(2, cri.getEndNum());
+			
+			// 쿼리 실행
 			rs = pstmt.executeQuery();
 			
 			// 결과집합으로부터 도서의 정보를 가지고와서 dto에 저장 후 리스트에 담아줍니다
@@ -83,6 +87,28 @@ public class BookDao extends DBConnPool{
 		}
 		
 		return dto;
+	}
+	
+	/**
+	 * 도서의 총 건수를 조회 합니다.
+	 * @return
+	 */
+	public int getTotalCnt() {
+		int res = 0;
+		String sql = "select count(*) from book";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				res = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 	
 }

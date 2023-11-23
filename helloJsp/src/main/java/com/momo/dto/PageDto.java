@@ -11,7 +11,7 @@ public class PageDto {
 	// 위의 정보들을 세팅하기위해 필요한 값
 	int totalCnt;			// 총 게시물의 수
 	Criteria cri;			// 요청 페이지번호, 페이지당 게시물 수
-	int blockAmount = 10;		// 페이지블럭에 보여줄 페이지의 수 
+	int blockAmount = 5;		// 페이지블럭에 보여줄 페이지의 수 
 	
 	/**
 	 * 생성자를 통해 페이지 블럭을 그리기 위한 정보를 세팅 합니다.

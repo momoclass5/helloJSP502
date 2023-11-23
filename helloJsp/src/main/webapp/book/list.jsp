@@ -36,12 +36,17 @@ function msg(str){
 function view(no){
 	location.href = "/book/view?no=" + no; 
 }
+
 // 화면 요청
 </script>
 
 </head>
 <body>
 <h2>도서목록</h2>
+<form action="/book/list" name="searchForm">
+	<input name="pageNo">
+	<input name="amount" value="2">
+</form>
 
 <table class="table">
   <thead>
@@ -78,9 +83,12 @@ function view(no){
 </c:if>
 
 
-
   </tbody>
 </table>
+
+<!-- page navi -->
+<!-- pageDto가 request영역에 저장 되어 있으면 페이지 블럭을 출력 합니다. -->
+<%@ include file="/06session/servletEx/PageNavi.jsp" %>
 
 <!-- 부트스트랩 js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

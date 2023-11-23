@@ -13,7 +13,7 @@
 
 <style type="text/css">
 	.pointer {
-		curson : pointer;
+		cursor : pointer;
 	}
 	
 </style>
@@ -32,17 +32,16 @@
 function msg(str){
 	alert(str);
 }
-msg("안녕하세요");
-msg("반가워요~!");
 
+function view(no){
+	location.href = "/book/view?no=" + no; 
+}
 // 화면 요청
-// location.href = "/book/view?no=1"; 
 </script>
 
 </head>
 <body>
 <h2>도서목록</h2>
-list : ${list }
 
 <table class="table">
   <thead>
@@ -67,7 +66,8 @@ list : ${list }
 	<c:forEach items="${list }" var="dto">
     <tr>
       <th scope="row">${dto.no }</th>
-      <td class = "pointer" onclick="msg('제목이 클릭 되었어요')" >
+      <td class = "pointer" 
+      		onclick="view(${dto.no})" >
       		${dto.title }
       </td>
       <td>${dto.author }</td>

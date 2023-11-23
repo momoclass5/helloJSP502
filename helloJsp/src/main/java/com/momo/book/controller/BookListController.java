@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.momo.book.dao.BookDao;
+import com.momo.dto.Criteria;
 import com.momo.lib.dto.BookDto;
 
 @WebServlet("/book/list")
@@ -20,9 +21,16 @@ public class BookListController extends HttpServlet {
 	 * 도서목록을 조회 합니다.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 사용자의 요청 정보를 수집 합니다.
+		Criteria cri =
+				new Criteria(
+						request.getParameter("pageNo")		// 요청 페이지 번호 (기본값 : 1)
+						, request.getParameter("amount")	// 페이지당 보여줄 게시물의 수 (기본값 : 10)
+					);
+				
 		// 도서목록 조회후 request 영역에 담아 줍니다. -> 화면에서 출력 하기 위해서!!
 		BookDao dao = new BookDao();
-		List<BookDto> list = dao.getList();
+		List<BookDto> list = dao.getList(cri);
 		request.setAttribute("list", list);
 		
 		dao.close();

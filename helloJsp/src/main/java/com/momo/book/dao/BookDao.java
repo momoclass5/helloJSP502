@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.momo.common.DBConnPool;
+import com.momo.dto.Criteria;
 import com.momo.lib.dto.BookDto;
 
 /**
@@ -17,11 +18,23 @@ public class BookDao extends DBConnPool{
 	 * 도서목록을 조회 후 반환 합니다.
 	 * @return 도서목록
 	 */
-	public List<BookDto> getList(){
+	public List<BookDto> getList(Criteria cri){
 		List<BookDto> list = new ArrayList<>();
-		String sql = "select * from book";
+		
+		String sql = "        select *\r\n"
+					+ "        from book\r\n"
+					+ "        -- 최신게시물을 먼저 조회 하기 위해서 정렬 합니다\r\n"
+					+ "        order by no desc";
+		
+		
 		try {
+			// pageingQuery를 이용시 페이지 처리를 위한 파라메터 세팅을 해주어야 합니다!!!
+			sql = pageingQuery(sql);
+			
+			System.out.println("sql\n" + sql);
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cri.getStartNum());
+			pstmt.setInt(2, cri.getEndNum());
 			rs = pstmt.executeQuery();
 			
 			// 결과집합으로부터 도서의 정보를 가지고와서 dto에 저장 후 리스트에 담아줍니다
@@ -71,6 +84,7 @@ public class BookDao extends DBConnPool{
 		
 		return dto;
 	}
+	
 }
 
 

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +23,31 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
+	<script>
+	window.onload = function(){
+		console.log('onload event 발생');
+		/* 변수선언 
+		 	var - 변수의 중복선언이 가능
+		 	let - 지역변수, 중복선언 불가능
+		 	const - 지역상수, 중복선언 불가능
+		 */
+		let regBtn = document.querySelector("#regBtn");
+		regBtn.addEventListener('click', function(){
+			console.log('회원가입 버튼이 클릭 되었습니다.');
+			// 회원가입 유효성검사
+			
+			// 등록 요청
+			regForm.action = "/book/regProcess"; // 요청 URL 설정
+			regForm.method = "post"; 
+			// 폼을 전송 -> 새로운 페이지를 요청
+			regForm.submit();
+		});
+	}
+	
+	function validationCheck(){
+		alert('유효성검사');
+	}
+	</script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -34,35 +62,33 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
-                                    </div>
+                            <form name="regForm" class="user">
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" 
+                                    	id="id" name="id" placeholder="id 입력" >
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
+                                    <input type="text" class="form-control form-control-user" 
+                                    	id="name" name="name" placeholder="이름 입력" >
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="email"
+                                       name="email" placeholder="email 입력 ">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="pw" name="pw" placeholder="Password 입력">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            id="pwCheck" placeholder="Repeat Password 확인">
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
+                                <a id="regBtn" class="btn btn-primary btn-user btn-block">
+                                    회원가입
                                 </a>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">

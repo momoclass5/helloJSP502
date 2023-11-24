@@ -34,7 +34,7 @@ public class BookListController extends HttpServlet {
 		BookDao dao = new BookDao();
 		List<BookDto> list = dao.getList(cri);
 		
-		// 페이지 블럭을 생성 하기 위한 객체
+		// 😊😊😊 페이지 블럭을 생성 하기 위한 객체
 		PageDto pageDto = new PageDto(dao.getTotalCnt(), cri);
 		
 		request.setAttribute("list", list);

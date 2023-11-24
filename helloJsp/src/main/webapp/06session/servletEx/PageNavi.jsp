@@ -20,7 +20,15 @@
 </head>
 <body>
 <br>
-
+<!-- 
+페이지 블럭을 출력 하는 방법
+	1. 요청 컨트롤러에서 pageDto를 request영역에 저장 해주세요!!!!
+	2. PageNavi.jsp를 include 해주세요!!!!
+		- 리스트 페이지의 페이지 블럭을 출력하고 싶은 위치에 
+	3. searchForm을 생성 합니다.
+		- pageNo 요소가 있어야 해요
+		
+ -->
 <!-- 페이지네이션 -->
 <nav aria-label="...">
   <ul class="pagination">
@@ -44,8 +52,6 @@
 	    		${i }</a>
 	    </li>
     </c:forEach>
-    
-    
     
     <!-- 뒤로가기 버튼 시작 -->
     <li class="page-item ${pageDto.next ? '' : 'disabled'}">

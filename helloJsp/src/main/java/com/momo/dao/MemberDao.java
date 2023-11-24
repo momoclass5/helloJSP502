@@ -7,6 +7,31 @@ import com.momo.dto.MemberDto;
 
 public class MemberDao extends DBConnPool{
 	
+	public int regMember(MemberDto dto) {
+		int res = 0;
+		// 쿼리문장에는 ;을 입력 하지 않습니다.
+		String sql = "insert into member (id, pass, name, regidate, email) \r\n"
+					+ "            values (?, ?, ?, sysdate, ?)";
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPass());
+			pstmt.setString(3, dto.getName());
+			pstmt.setString(4, dto.getEmail());
+			
+			res = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return res;
+	}
+	
 	public MemberDto login(String id, String pw) {
 		MemberDto memberDto = new MemberDto();
 		String sql = "select  * \r\n"

@@ -5,6 +5,27 @@ public class MemberDto {
 	public String pass;
 	public String name;
 	public String regidate;
+	public String email;
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "id : "+ id
+				+ "\npw : "+ pass
+				+ "\nname : "+ name
+				+ "\nemail : "+ email;
+	}
+	
+	public MemberDto() {}
+
+	public MemberDto(String id, String pass, String name, String regidate, String email) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.regidate = regidate;
+		this.email = email;
+	}
 	
 	public String getId() {
 		return id;
@@ -29,6 +50,12 @@ public class MemberDto {
 	}
 	public void setRegidate(String regidate) {
 		this.regidate = regidate;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

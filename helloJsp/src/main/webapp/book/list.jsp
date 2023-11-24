@@ -168,7 +168,7 @@ function view(no){
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="/img/undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -180,7 +180,7 @@ function view(no){
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="/img/undraw_profile_2.svg"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -192,7 +192,7 @@ function view(no){
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="/img/undraw_profile_3.svg"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -226,7 +226,7 @@ function view(no){
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -260,7 +260,7 @@ function view(no){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <h1 class="h3 mb-2 text-gray-800">이대 도서관</h1>
                     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                         For more information about DataTables, please visit the <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.</p>
@@ -268,70 +268,12 @@ function view(no){
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">도서목록</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h2>도서목록</h2>
-
-<form name="searchForm" action="/book/list">
+                            
+                            <form name="searchForm" action="/book/list">
 pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
 num : <input type="text" name="num" value="">
 amount : 	<input name="amount" value="1">
@@ -350,48 +292,62 @@ amount : 	<input name="amount" value="1">
 </div>
 
 </form>
+<br>
+                            	<!-- id="dataTable" 를 삭제 해주시면 페이징및 검색이 생성되지 않음  -->
+                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>도서번호</th>
+                                            <th>도서명</th>
+                                            <th>작가</th>
+                                            <th>대여여부</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- 리스트가 비어 있다면 메세지 출력 --> 
+									<c:if test="${empty list}" var="res">
+										<tr>
+											<td colspan="4">도서목록이 존재 하지 않습니다.</td>
+										</tr>
+									</c:if>
+									
+									<!-- 리스트가 비어 있지 않다면 도서목록을 출력 -->
+									<c:if test="${not res }">
+										<c:forEach items="${list }" var="dto">
+									    <tr>
+									      <th scope="row">${dto.no }</th>
+									      <td class = "pointer" 
+									      		onclick="view(${dto.no})" >
+									      		${dto.title }
+									      </td>
+									      <td>${dto.author }</td>
+									      <!-- Y/N -> 대여/대여중 -->
+									      <td>${dto.rentYnStr }</td>
+									    </tr>
+									    </c:forEach>
+									</c:if>
+                                        
+                                    </tbody>
+                                </table>
+                                
+                                <!-- page navi -->
+								<!-- pageDto가 request영역에 저장 되어 있으면 페이지 블럭을 출력 합니다. -->
+								<%@ include file="/06session/servletEx/PageNavi.jsp" %>
+								
+                            </div>
+                        </div>
+                    </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">도서번호</th>
-      <th scope="col">도서명</th>
-      <th scope="col">작가</th>
-      <th scope="col">대여여부</th>
-    </tr>
-  </thead>
-  <tbody>
-  
-<!-- 리스트가 비어 있다면 메세지 출력 --> 
-<c:if test="${empty list}" var="res">
-	<tr>
-		<td colspan="4">도서목록이 존재 하지 않습니다.</td>
-	</tr>
-</c:if>
-
-<!-- 리스트가 비어 있지 않다면 도서목록을 출력 -->
-<c:if test="${not res }">
-	<c:forEach items="${list }" var="dto">
-    <tr>
-      <th scope="row">${dto.no }</th>
-      <td class = "pointer" 
-      		onclick="view(${dto.no})" >
-      		${dto.title }
-      </td>
-      <td>${dto.author }</td>
-      <!-- Y/N -> 대여/대여중 -->
-      <td>${dto.rentYnStr }</td>
-    </tr>
-    </c:forEach>
-</c:if>
+                </div>
+                <!-- /.container-fluid -->
 
 
-  </tbody>
-</table>
+            </div>
+            <!-- End of Main Content -->
 
-<!-- page navi -->
-<!-- pageDto가 request영역에 저장 되어 있으면 페이지 블럭을 출력 합니다. -->
-<%@ include file="/06session/servletEx/PageNavi.jsp" %>
+
+
+
 
 <%@ include file="../footer.jsp" %>
 </body>

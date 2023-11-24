@@ -21,9 +21,16 @@ public class BookDao extends DBConnPool{
 	public List<BookDto> getList(Criteria cri){
 		List<BookDto> list = new ArrayList<>();
 		
+		String where = "";
+		if(!"".equals(cri.getSearchField())
+				&& !"".equals(cri.getSearchWord())) {
+			where = " where "+ cri.getSearchField() 
+						+ " like '%"+cri.getSearchWord()+"%'";
+		}
 		String sql = "        select *\r\n"
 					+ "        from book\r\n"
 					+ "        -- 최신게시물을 먼저 조회 하기 위해서 정렬 합니다\r\n"
+					+ where
 					+ "        order by no desc";
 		
 		
@@ -93,9 +100,15 @@ public class BookDao extends DBConnPool{
 	 * 도서의 총 건수를 조회 합니다.
 	 * @return
 	 */
-	public int getTotalCnt() {
+	public int getTotalCnt(Criteria cri) {
 		int res = 0;
-		String sql = "select count(*) from book";
+		String where = "";
+		if(!"".equals(cri.getSearchField())
+				&& !"".equals(cri.getSearchWord())) {
+			where = " where "+ cri.getSearchField() 
+						+ " like '%"+cri.getSearchWord()+"%'";
+		}
+		String sql = "select count(*) from book " + where;
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();

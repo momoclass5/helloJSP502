@@ -43,18 +43,58 @@
 	function validationCheck(){
 		if(id.value == ""){
 			alert("아이디를 입력해주세요");
+			id.focus();
 			return false;
 		}
+		if(id.value.length > 10){
+			alert('아이디의 길이는 10자를 초과 할 수 없습니다.');
+			id.focus();
+			return false;
+		}
+		
+		let name = document.querySelector("#name");
 		if(name.value == ""){
 			alert("이름을 입력해주세요");
+			name.focus();
 			return false;
+		}
+		if(name.value.length > 15){
+			alert("이름의 길이는 15자를 초과 할 수 없습니다.");
+			name.focus();
 		}
 		if(email.value == ""){
 			alert("이메일을 입력해주세요");
+			email.focus();
 			return false;
 		}
+		if(email.value.length > 100){
+			alert("이메일의 길이는 100자를 초과 할 수 없습니다.");
+			email.focus();
+			return false;
+		}
+		
+		// 정규식 패턴문자열을 생성
+		let email_reg = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+		// 패턴형식과 일치하는지 확인
+		if(!email_reg.test(email.value)){
+			alert("이메일 형식이 일치하지 않습니다.");
+			email.focus();
+			return false;
+		}
+		
 		if(pw.value == ""){
-			alert("비밀번호를 입력해주세요");
+			alert("비밀번호를 입력해주세요.");
+			pw.focus();
+			return false;
+		}
+		if(pw.value.length > 10){
+			alert("비밀번호는 10자리를 초과 할 수 없습니다.");
+			pw.focus();
+			return false;
+		}
+		if(pw.value != pwCheck.value){
+			alert("비밀번호가 일치하지 않습니다. 비밀번호를 확인해주세요.");
+			pw.focus();
 			return false;
 		}
 		
@@ -65,6 +105,15 @@
 		regForm.submit();
 		
 		
+	}
+	
+	function getByteLength(str) {
+	  // TextEncoder 객체 생성 (UTF-8 사용) : 한글 3byte로 계산됨
+	  var encoder = new TextEncoder('utf-8');
+	  // 문자열을 바이트 배열로 인코딩
+	  var encoded = encoder.encode(str);
+	  // 바이트 배열의 길이 반환
+	  return encoded.length;
 	}
 	</script>
 </head>

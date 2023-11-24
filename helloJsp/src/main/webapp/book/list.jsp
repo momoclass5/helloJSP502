@@ -43,9 +43,25 @@ function view(no){
 </head>
 <body>
 <h2>도서목록</h2>
-<form action="/book/list" name="searchForm">
-	<input name="pageNo">
-	<input name="amount" value="2">
+
+<form name="searchForm" action="/book/list">
+pageNo : <input type="text" name="pageNo" value="${pageDto.cri.pageNo }">
+num : <input type="text" name="num" value="">
+amount : 	<input name="amount" value="1">
+<div class="input-group">
+  <select class="form-select" name="searchField" id="inputGroupSelect04" aria-label="Example select with button addon">
+    <!-- 선택된 요소의 value값이 서버로 넘어 갑니다. -->
+	<option value="title" 
+			${pageDto.cri.searchField eq 'title' ? 'selected' : ''}
+			>도서명</option>
+	<option value="author" 
+			${pageDto.cri.searchField eq 'author' ? 'selected' : ''}
+			>작가</option>
+  </select>
+  <input type="text" name="searchWord" value="${pageDto.cri.searchWord }" class="form-control" aria-label="Text input with dropdown button">
+  <button class="btn btn-outline-secondary" type="submit">검색</button>
+</div>
+
 </form>
 
 <table class="table">

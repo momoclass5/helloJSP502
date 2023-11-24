@@ -56,15 +56,16 @@ public class MemberRegController extends HttpServlet {
 		// 메세지 출력후 페이지 전환 (성공: 로그인페이지로 이동, 실패: 뒤로가기)
 		if(res > 0) {
 			// 회원가입 성공
-			
+			request.setAttribute("msg", "회원가입 성공!! 로그인후 이용해주세요.");
+			request.setAttribute("url", "/06session/servletEx/loginForm.jsp");
 		} else {
 			// 회원가입 실패 
 			//  - 컬럼의 사이즈보다 입력값이 큰경우, 타입이 맞지 않는경우 -> 입력화면에 유효성검증을 추가 하여 해결
+			request.setAttribute("msg", "회원가입 실패!! 관리자에게 문의 해주세요");
 		}
 		
-		
 		// forward방식으로 페이지 전환 - request영역을 공유
-		request.getRequestDispatcher("/book/register.jsp").forward(request, response);
+		request.getRequestDispatcher("/book/msgBox.jsp").forward(request, response);
 	}
 
 }

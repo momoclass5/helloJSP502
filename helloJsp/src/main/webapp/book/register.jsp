@@ -32,20 +32,39 @@
 		 	const - 지역상수, 중복선언 불가능
 		 */
 		let regBtn = document.querySelector("#regBtn");
-		regBtn.addEventListener('click', function(){
-			console.log('회원가입 버튼이 클릭 되었습니다.');
-			// 회원가입 유효성검사
-			
-			// 등록 요청
-			regForm.action = "/book/regProcess"; // 요청 URL 설정
-			regForm.method = "post"; 
-			// 폼을 전송 -> 새로운 페이지를 요청
-			regForm.submit();
-		});
+		
+		// 익명의 함수를 작성 할 수도 있고, 이미 작성된 함수의 이름을 넘겨줄 수도 있다
+		// 함수의 이름을 넣어줄때에는 함수이름 뒤에 ()를 붙이면 안됩니다!!!!!
+		// 함수이름() : 함수를 실행하라는 의미
+		regBtn.addEventListener('click', validationCheck);
+		
 	}
 	
 	function validationCheck(){
-		alert('유효성검사');
+		if(id.value == ""){
+			alert("아이디를 입력해주세요");
+			return false;
+		}
+		if(name.value == ""){
+			alert("이름을 입력해주세요");
+			return false;
+		}
+		if(email.value == ""){
+			alert("이메일을 입력해주세요");
+			return false;
+		}
+		if(pw.value == ""){
+			alert("비밀번호를 입력해주세요");
+			return false;
+		}
+		
+		// 등록 요청
+		regForm.action = "/book/regProcess"; // 요청 URL 설정
+		regForm.method = "post"; 
+		// 폼을 전송 -> 새로운 페이지를 요청
+		regForm.submit();
+		
+		
 	}
 	</script>
 </head>

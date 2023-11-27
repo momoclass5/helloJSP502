@@ -7,6 +7,8 @@ import com.momo.dto.MemberDto;
 
 public class MemberDao extends DBConnPool{
 	
+	//  메서드 선언부
+	// 접근제한자 반환타입 메서드이름(매개변수타입 매개변수이름){}
 	public int regMember(MemberDto dto) {
 		int res = 0;
 		// 쿼리문장에는 ;을 입력 하지 않습니다.

@@ -31,7 +31,7 @@
  -->
 <!-- 페이지네이션 -->
 <nav aria-label="...">
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
   	<!-- 앞으로 가기 버튼 시작 disabled : 비활성화 -->
     <li class="page-item ${pageDto.prev ? '' : 'disabled' }">
       <a class="page-link" onclick="goPage(${pageDto.startNo-1 })">Previous</a>

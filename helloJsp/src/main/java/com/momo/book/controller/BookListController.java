@@ -24,6 +24,7 @@ public class BookListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 사용자의 요청 정보를 수집 합니다.
+		// Criteria : 검색조건을 수집
 		Criteria cri =
 				new Criteria(
 						request.getParameter("pageNo")		// 요청 페이지 번호 (기본값 : 1)

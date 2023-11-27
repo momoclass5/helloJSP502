@@ -39,7 +39,7 @@ public class BookRegController extends HttpServlet {
 		// 입력성공
 		if(res>0) {
 			request.setAttribute("msg", "등록 되었습니다.");
-			request.setAttribute("url", "/book/list");
+			request.setAttribute("url", "/book/list.jsp");
 		// 입력실패
 		} else {
 			request.setAttribute("msg", "등록중 예외가 발생 하였습니다.\n관리자에게 문의 해주세요.");

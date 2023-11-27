@@ -21,6 +21,7 @@ public class FileDto {
 				+ "\npostdate : " + postdate;
 	}
 	
+	public FileDto() { }
 	public FileDto(int file_no, String name, String title, String cate, String ofile, String sfile, String postdate) {
 		super();
 		this.file_no = file_no;
@@ -53,8 +54,14 @@ public class FileDto {
 	public String getCate() {
 		return cate;
 	}
-	public void setCate(String cate) {
-		this.cate = cate;
+	public void setCate(String[] cateArr) {
+		// 체크박스는 여러개 선택이 가능 하므로 배열형태로 값을 전달 받습니다.
+		// 배열로 부터 하나씩 꺼내서 문자열로 만들어 줍니다.
+		String cateStr = ""; 
+		for(String cate : cateArr) {
+			cateStr += cate+",";
+		}
+		this.cate = cateStr;
 	}
 	public String getOfile() {
 		return ofile;

@@ -81,6 +81,11 @@ public class FileDto {
 	public void setPostdate(String postdate) {
 		this.postdate = postdate;
 	}
+
+	public void setCate(String cate) {
+		this.cate = cate;
+		
+	}
 	
 	
 }

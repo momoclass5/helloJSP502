@@ -89,6 +89,16 @@ public class UploadProcess extends HttpServlet {
 		FileDao dao = new FileDao();
 		int res = dao.regFile(fileDto);
 		
+		if(res > 0) {
+			request.setAttribute("msg", "등록되었습니다.");
+			// list.jsp를 바로 호출할경우 데이터를 조회 할 수 없으므로
+			// 서블릿을 호출합니다
+			request.setAttribute("url", "/upload/list");
+		} else {			
+			request.setAttribute("msg", "등록중 예외사항이 발생 하였습니다. 관리자에게 문의해주세요.");
+		}
+		
+		request.getRequestDispatcher("/book/msgBox.jsp").forward(request, response);
 	}
 
 }

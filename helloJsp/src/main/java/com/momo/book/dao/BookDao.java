@@ -123,6 +123,36 @@ public class BookDao extends DBConnPool{
 		
 		return res;
 	}
+
+	/**
+	 * 도서 등록
+	 * @param dto
+	 * @return
+	 */
+	public int regBook(BookDto dto) {
+		String sql = "insert into book (no, title, rentyn, author)\r\n"
+					+ "        values (seq_book_no.nextval, ?, 'N', ?)";
+		int res = 0;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getAuthor());
+
+			
+			// select 문장은 결과집합을 반환 : rs = pstmt.executeQuery()
+			// insert, delete, update의 반환 타입은 몇건이 처리되었는지 결과
+			res = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return res;
+	}
 	
 }
 

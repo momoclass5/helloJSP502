@@ -18,6 +18,17 @@
 	
 </style>
 <script type="text/javascript">
+window.onload = function(){
+	
+	// 요소선택
+	let regBtn = document.querySelector("#regBtn");
+	
+	// 이벤트 부여
+	regBtn.addEventListener('click', function(){
+		location.href = "/book/reg.jsp";
+	});
+	
+}
 /*
  	스크립트에서 함수를 정의 하는 방법
 	function 함수명(파람0, 파람1, ...){
@@ -80,6 +91,7 @@ function view(no){
 				
 				</form>
 				<br>
+			<p><button type="button" class="btn btn-dark" id="regBtn">도서등록</button></p>
             <!-- id="dataTable" 를 삭제 해주시면 페이징및 검색이 생성되지 않음  -->
             <table class="table table-bordered" width="100%" cellspacing="0">
                 <thead>

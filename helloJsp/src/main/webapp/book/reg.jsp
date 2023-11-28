@@ -34,8 +34,11 @@
             <h6 class="m-0 font-weight-bold text-primary">도서등록</h6>
         </div>
         <div class="card-body">
-    		<!-- 등록폼 -->
-    		<form action="/book/bookRegProcess" name="regForm" method="post">
+    		<!-- 등록폼 -> 파일업로드를 위해 컨트롤러를 변경 
+    					enctype 속성 지정-->
+    		<form action="/book/bookRegUploadProcess" 
+    							enctype="multipart/form-data" 
+    							name="regForm" method="post">
     			
     			<div class="input-group mb-3">
 				  <span class="w-20 input-group-text text-center" id="basic-addon1">도서명</span>

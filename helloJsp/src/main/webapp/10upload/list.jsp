@@ -32,11 +32,19 @@
 		<td>${fileDto.ofile }</td>
 		<td>${fileDto.sfile }</td>
 		<td>${fileDto.postdate }</td>
+		<td>
+			<a href="/10upload/filedownload.jsp?ofile=10_정규표현식.js&sfile=10_정규표현식.js">
+				${fileDto.ofile }
+			</a>
+		</td>
 	</tr>
 	</c:forEach>
 	
 </table>
 
+<a href="/10upload/filedownload.jsp?ofile=10_정규표현식.js&sfile=10_정규표현식.js">
+				10_정규식.js
+			</a>
 
 </body>
 </html>
